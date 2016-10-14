@@ -1,0 +1,28 @@
+name 's6-portable-utils'
+org 'amylum'
+
+licenses 'COPYING'
+
+deps(
+  skalibs: '2.3.10.0-40',
+)
+
+configure_flags(
+  prefix: '/usr',
+  'with-include': "#{dep(:skalibs)}/usr/include",
+  'with-lib': "#{dep(:skalibs)}/usr/lib/skalibs",
+  'with-dynlib': "#{dep(:skalibs)}/usr/lib",
+  'with-sysdeps': "#{dep(:skalibs)}/usr/lib/skalibs/sysdeps"
+)
+
+harden
+
+build do
+  configure
+  make
+  install
+end
+
+test do
+  # TODO: add tests
+end
